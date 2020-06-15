@@ -1,76 +1,45 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-import examples.ArrayExampleOne;
-import examples.ArrayExampleThree;
-import examples.ArrayExampleTwo;
-
 public class Application {
-	
-	public static void main(String[] args) {
-		//ArrayExampleOne.run();
-		//ArrayExampleTwo.run();
-		//ArrayExampleThree.run();
-		
-		 Integer[] data = { 100, 200, 300, 400, null };
-		 
-		 data = moveArrayToRight(data);
-		 
-		 System.out.println(Arrays.toString(data));
-		 
-		 data = moveArrayToLeft(data);
-		 
-		 System.out.println(Arrays.toString(data));
-		 
-		 data = moveArrayToRightFor(data);
-		 
-		 System.out.println(Arrays.toString(data));
-		 
-		 data = moveArrayToLeftFor(data);
-		 
-		 System.out.println(Arrays.toString(data));
-		
-	}
-	
-	// Method takes array[i] and replace it with array[i-1]
-	// After while loop ends i = 0, and array[0] is set as null
-	// The method returns the modified array with all members moved one step to the right and first member set as null
-	public static Integer[] moveArrayToRight(Integer[] array){
-        int i = array.length-1;
-        while( i > 0 ){
-            array[i--] = array[i];
-        }
-        array[i] = null;
-        return array;
-    }
-	
-	// Method takes array[i] and replace it with array[i+1]
-	// After while loop ends i = array.length, and array[array.length] is set as null
-	// The method returns the modified array with all members moved to left and last member set as null
-	public static Integer[] moveArrayToLeft(Integer[] array){
-        int i = 0;
-        while( i < array.length - 1 ){
-            array[i] = array[++i];
-        }
-        array[i] = null;
-        return array;
-    }
-	
-	public static Integer[] moveArrayToRightFor(Integer[] array){
-		for (int i = array.length-1; i > 0; i--) {
-			array[i] = array[i-1];
-		}
-		array[0] = null;
-        return array;
-    }
-	
-	public static Integer[] moveArrayToLeftFor(Integer[] array){
-		for (int i = 0; i < array.length-1; i++) {
-			array[i] = array[i+1];
-		}
-		array[array.length - 1] = null;
-        return array;
-    }
 
+	public static void main(String[] args) {
+		 // CLIENT WISHES
+		ArrayList<String> listOfWishes = new ArrayList<>();
+		listOfWishes.addAll(Arrays.asList(
+				"Spaghetti,2",
+				"Pepper,5",
+				"Sugar,1"
+				));
+		
+		System.out.println(listOfWishes.toString());
+		
+		// STORE OFFERS
+		ArrayList<String> listOfOffers = new ArrayList<>();
+		listOfOffers.addAll(Arrays.asList( 
+			    "Spaghetti,10.00", 
+			    "Sugar,5.00",
+			    "Water,2.50"
+			  )); 
+		 
+		// CLIENT FULFILLED WISHES
+		 ArrayList<String> listOfPurchases = new ArrayList<>();
+		
+		for (int i = 0; i < listOfWishes.size(); i++) {
+			float f1 = 0.0f;
+			for (int j = 0; j < listOfOffers.size(); j++) {
+				
+				if (listOfWishes.get(i).split(",")[0].equals(listOfOffers.get(j).split(",")[0])) {
+			
+					f1 = Float.valueOf(listOfWishes.get(i).split(",")[1]) * 
+							Float.valueOf(listOfOffers.get(j).split(",")[1]);
+					listOfPurchases.add(listOfWishes.get(i) + "=" + f1);
+				}
+			}
+		}
+		
+		System.out.println(listOfPurchases.toString());
+	}
 }
