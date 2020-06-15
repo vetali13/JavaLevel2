@@ -14,7 +14,7 @@ public class ListOfTemperatures {
 		NumberFormat formatter = new DecimalFormat("#0.0");
 		
 		int i = 0;
-		while (i <=31) {
+		while (i <31) {
 			Double genTemp = randomTemperature.nextDouble() * (maxRange - minRange) + minRange;
 			temps.add(Double.valueOf(formatter.format(genTemp)));
 			
